@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全球精选网址导航 - Navs Hub</title>
+  <meta name="description" content="极简、高效、收录丰富的现代化综合网址导航与知识门户" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* 平滑滚动与自定义滚动条 */
+    html {
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    .card-hover {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-200">
+
+  <!-- 顶部导航栏 -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- 站点 LOGO -->
+      <a href="#" class="flex items-center gap-2.5 font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+          <i data-lucide="compass" class="w-5 h-5"></i>
+        </div>
+        <span>Navs<span class="text-blue-600">Hub</span></span>
+      </a>
+
+      <!-- 顶部显眼外链推荐区（重点包含 chengrenbaike.com） -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white shadow-sm shadow-orange-500/25 transition-all hover:scale-105"
+           title="访问 chengrenbaike.com">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>成人百科 (chengrenbaike.com)</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-80"></i>
+        </a>
+      </div>
+
+      <!-- 右侧功能区 -->
+      <div class="flex items-center gap-2">
+        <!-- 移动端外链 -->
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+           class="md:hidden inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-lg bg-orange-500 text-white">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>成人百科</span>
+        </a>
+
+        <!-- 暗黑模式切换 -->
+        <button id="themeToggle" class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 transition-colors" title="切换深色/浅色模式">
+          <i data-lucide="sun" id="sunIcon" class="w-5 h-5 hidden"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体内容 -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+    
+    <!-- 侧边栏分类快捷导航 -->
+    <aside class="md:w-56 shrink-0 md:sticky md:top-24 h-fit bg-white dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+      <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3 px-2">分类索引</div>
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="#featured" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+          <span>热门精选</span>
+        </a>
+        <a href="#ai-tools" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+          <span>AI 智能工具</span>
+        </a>
+        <a href="#wiki" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>百科与知识库</span>
+        </a>
+        <a href="#dev" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="code-2" class="w-4 h-4"></i>
+          <span>程序员开发</span>
+        </a>
+        <a href="#design" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="palette" class="w-4 h-4"></i>
+          <span>设计与视觉</span>
+        </a>
+        <a href="#media" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="film" class="w-4 h-4"></i>
+          <span>影音与娱乐</span>
+        </a>
+        <a href="#productivity" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors">
+          <i data-lucide="wrench" class="w-4 h-4"></i>
+          <span>效率与工具</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- 主展示区域 -->
+    <main class="flex-1 min-w-0">
+      
+      <!-- 搜索聚合栏 -->
+      <section class="mb-8">
+        <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <!-- 搜索引擎切换标签 -->
+          <div class="flex items-center gap-2 mb-3 overflow-x-auto pb-1 text-sm font-medium" id="searchEngines">
+            <button data-engine="google" class="engine-tab active px-3 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400">Google</button>
+            <button data-engine="bing" class="engine-tab px-3 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400">Bing</button>
+            <button data-engine="baidu" class="engine-tab px-3 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400">百度</button>
+            <button data-engine="github" class="engine-tab px-3 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400">GitHub</button>
+            <button data-engine="filter" class="engine-tab px-3 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400">⚡ 站内筛选</button>
+          </div>
+
+          <!-- 搜索输入框 -->
+          <form id="searchForm" target="_blank" class="flex items-center gap-2">
+            <div class="relative flex-1">
+              <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="搜索网络或直接输入关键词筛选站内导航..." 
+                class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base text-slate-800 dark:text-slate-100 placeholder-slate-400"
+              />
+            </div>
+            <button type="submit" class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm sm:text-base shadow-sm transition-colors flex items-center gap-1.5 shrink-0">
+              <span>搜索</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 重点推荐醒目横幅 -->
+      <section class="mb-10">
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-rose-500 via-pink-500 to-indigo-600 p-6 text-white shadow-lg shadow-rose-500/15">
+          <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-bold tracking-wider uppercase bg-white/20 rounded-full backdrop-blur-sm">精选推荐站点</span>
+              <h2 class="text-xl sm:text-2xl font-bold tracking-tight">探索成人百科综合资料库</h2>
+              <p class="text-sm text-white/90 mt-1 max-w-xl">汇集全面词条、品牌分类、内容科普与权威资料查阅，一站式导航与信息参考中心。</p>
+            </div>
+            <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-all shadow-md shrink-0 flex items-center gap-2">
+              <span>立即访问 chengrenbaike.com</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <div class="absolute -right-8 -bottom-10 w-44 h-44 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        </div>
+      </section>
+
+      <!-- 1. 热门精选 -->
+      <section id="featured" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="flame" class="w-5 h-5 text-rose-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">热门精选</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <!-- 醒目锚文本卡片：成人百科 -->
+          <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+             class="site-card group p-4 rounded-xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-950/20 dark:to-orange-950/20 border-2 border-rose-400/50 hover:border-rose-500 dark:border-rose-500/40 card-hover shadow-sm block relative">
+            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-rose-500 text-white rounded">置顶推荐</span>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold text-base shadow-sm shrink-0">
+                百
+              </div>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors truncate">
+                  成人百科
+                </div>
+                <div class="text-xs text-rose-600 dark:text-rose-400 font-mono truncate">chengrenbaike.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-2">
+              综合百科与资料库导航，提供分类详尽的权威词条检索与知识指南。
+            </p>
+          </a>
+
+          <!-- Google -->
+          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.google.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Google" onerror="this.src='https://icons.duckduckgo.com/ip3/www.google.com.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Google</div>
+                <div class="text-xs text-slate-400 font-mono truncate">google.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">全球最大的网页搜索引擎与信息入口。</p>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://github.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="GitHub"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">GitHub</div>
+                <div class="text-xs text-slate-400 font-mono truncate">github.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">全球领先的软件开发协作与开源代码托管平台。</p>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.youtube.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="YouTube"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">YouTube</div>
+                <div class="text-xs text-slate-400 font-mono truncate">youtube.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">全球最大的长短视频分享与创作社区。</p>
+          </a>
+
+          <!-- Bilibili -->
+          <a href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.bilibili.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Bilibili"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">哔哩哔哩 (Bilibili)</div>
+                <div class="text-xs text-slate-400 font-mono truncate">bilibili.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">国内年轻人潮流文化与视频娱乐弹幕社区。</p>
+          </a>
+
+          <!-- Twitter / X -->
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://abs.twimg.com/favicons/twitter.3.ico" class="w-9 h-9 rounded-lg" alt="X"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">X / Twitter</div>
+                <div class="text-xs text-slate-400 font-mono truncate">x.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">实时全球资讯与社交网络话题中心。</p>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 2. AI 智能工具 -->
+      <section id="ai-tools" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="bot" class="w-5 h-5 text-indigo-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">AI 智能工具</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://chatgpt.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="ChatGPT" onerror="this.src='https://icons.duckduckgo.com/ip3/chatgpt.com.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">ChatGPT</div>
+                <div class="text-xs text-slate-400 font-mono truncate">chatgpt.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">OpenAI 出品的通用对话大模型与智能写作助手。</p>
+          </a>
+
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://claude.ai/favicon.ico" class="w-9 h-9 rounded-lg" alt="Claude" onerror="this.src='https://icons.duckduckgo.com/ip3/claude.ai.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Claude</div>
+                <div class="text-xs text-slate-400 font-mono truncate">claude.ai</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Anthropic 研发的自然语言大模型，代码与逻辑分析能力顶尖。</p>
+          </a>
+
+          <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="w-9 h-9 rounded-lg" alt="Gemini"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Google Gemini</div>
+                <div class="text-xs text-slate-400 font-mono truncate">gemini.google.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Google 原生多模态 AI，支持海量上下文深度推理。</p>
+          </a>
+
+          <a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.midjourney.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Midjourney" onerror="this.src='https://icons.duckduckgo.com/ip3/www.midjourney.com.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Midjourney</div>
+                <div class="text-xs text-slate-400 font-mono truncate">midjourney.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">行业标杆级 AI 绘画与艺术图像生成工具。</p>
+          </a>
+
+          <a href="https://kimi.moonshot.cn" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://statics.moonshot.cn/kimi-chat/favicon.ico" class="w-9 h-9 rounded-lg" alt="Kimi" onerror="this.src='https://icons.duckduckgo.com/ip3/kimi.moonshot.cn.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Kimi 智能助手</div>
+                <div class="text-xs text-slate-400 font-mono truncate">kimi.moonshot.cn</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">月之暗面长文本解析大模型，擅长超长文献研读与联网搜索。</p>
+          </a>
+
+          <a href="https://v0.dev" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://v0.dev/favicon.ico" class="w-9 h-9 rounded-lg" alt="v0.dev" onerror="this.src='https://icons.duckduckgo.com/ip3/v0.dev.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">v0.dev</div>
+                <div class="text-xs text-slate-400 font-mono truncate">v0.dev</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Vercel 推出的生成式 UI 代码辅助平台。</p>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 3. 百科与知识库 -->
+      <section id="wiki" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="book-open" class="w-5 h-5 text-emerald-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">百科与知识库</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <!-- 成人百科（锚文本高亮） -->
+          <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+             class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border-2 border-rose-300 dark:border-rose-900/60 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-rose-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                科
+              </div>
+              <div class="min-w-0">
+                <div class="font-bold text-rose-600 dark:text-rose-400 group-hover:underline truncate">成人百科 (chengrenbaike.com)</div>
+                <div class="text-xs text-slate-400 font-mono truncate">chengrenbaike.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">专业成人内容百科资料库导航，品牌介绍与非播放站分类词条检索系统。</p>
+          </a>
+
+          <a href="https://zh.wikipedia.org" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://zh.wikipedia.org/favicon.ico" class="w-9 h-9 rounded-lg" alt="Wikipedia"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">维基百科 (Wikipedia)</div>
+                <div class="text-xs text-slate-400 font-mono truncate">zh.wikipedia.org</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">自由的在线百科全书，涵盖人类各领域的知识积累。</p>
+          </a>
+
+          <a href="https://baike.baidu.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://baike.baidu.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="百度百科"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">百度百科</div>
+                <div class="text-xs text-slate-400 font-mono truncate">baike.baidu.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">中文互联网词条最丰富的开放网络百科。</p>
+          </a>
+
+          <a href="https://zh.moegirl.org.cn" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://zh.moegirl.org.cn/favicon.ico" class="w-9 h-9 rounded-lg" alt="萌娘百科" onerror="this.src='https://icons.duckduckgo.com/ip3/zh.moegirl.org.cn.ico'"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">萌娘百科</div>
+                <div class="text-xs text-slate-400 font-mono truncate">zh.moegirl.org.cn</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">ACG 二次元文化、动漫角色与流行梗百科全书。</p>
+          </a>
+
+          <a href="https://www.zhihu.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://static.zhihu.com/heifetz/favicon.ico" class="w-9 h-9 rounded-lg" alt="知乎"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">知乎</div>
+                <div class="text-xs text-slate-400 font-mono truncate">zhihu.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">中文问答社区与原创深度观点知识库。</p>
+          </a>
+
+          <a href="https://archive.org" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://archive.org/favicon.ico" class="w-9 h-9 rounded-lg" alt="Internet Archive"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Internet Archive</div>
+                <div class="text-xs text-slate-400 font-mono truncate">archive.org</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">非营利数字图书馆与时光机历史网页档案馆。</p>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 4. 程序员与开发 -->
+      <section id="dev" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="code-2" class="w-5 h-5 text-sky-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">程序员开发</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <a href="https://stackoverflow.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://stackoverflow.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Stack Overflow"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Stack Overflow</div>
+                <div class="text-xs text-slate-400 font-mono truncate">stackoverflow.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">全球最大的开发者技术问答与编程疑难解惑社区。</p>
+          </a>
+
+          <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://developer.mozilla.org/favicon.ico" class="w-9 h-9 rounded-lg" alt="MDN"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">MDN Web Docs</div>
+                <div class="text-xs text-slate-400 font-mono truncate">developer.mozilla.org</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">权威 Web 标准文档，HTML/CSS/JS 开发必看手册。</p>
+          </a>
+
+          <a href="https://v2ex.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://v2ex.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="V2EX"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">V2EX</div>
+                <div class="text-xs text-slate-400 font-mono truncate">v2ex.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">创意工作者、极客与程序员的交流探讨社区。</p>
+          </a>
+
+          <a href="https://juejin.cn" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/static/favicons/favicon.ico" class="w-9 h-9 rounded-lg" alt="掘金"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">稀土掘金</div>
+                <div class="text-xs text-slate-400 font-mono truncate">juejin.cn</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">高质量中文技术博客社区与前端后端实践分享。</p>
+          </a>
+
+          <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://vercel.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Vercel"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Vercel</div>
+                <div class="text-xs text-slate-400 font-mono truncate">vercel.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">现代前端项目快速部署与 Serverless 云托管平台。</p>
+          </a>
+
+          <a href="https://crates.io" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://crates.io/favicon.ico" class="w-9 h-9 rounded-lg" alt="Crates.io"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Crates.io</div>
+                <div class="text-xs text-slate-400 font-mono truncate">crates.io</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Rust 官方软件包依赖注册仓库与文档查询。</p>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 5. 设计与视觉 -->
+      <section id="design" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="palette" class="w-5 h-5 text-purple-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">设计与视觉</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://static.figma.com/app/icon/1/favicon.ico" class="w-9 h-9 rounded-lg" alt="Figma"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Figma</div>
+                <div class="text-xs text-slate-400 font-mono truncate">figma.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">业界标杆级云端协同 UI/UX 原型与产品设计工具。</p>
+          </a>
+
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://dribbble.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Dribbble"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Dribbble</div>
+                <div class="text-xs text-slate-400 font-mono truncate">dribbble.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">全球优秀设计师视觉作品展示与灵感来源。</p>
+          </a>
+
+          <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://unsplash.com/favicon.ico" class="w-9 h-9 rounded-lg" alt="Unsplash"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Unsplash</div>
+                <div class="text-xs text-slate-400 font-mono truncate">unsplash.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">高画质无版权高清摄影图片免费下载图库。</p>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- 6. 效率与实用工具 -->
+      <section id="productivity" class="mb-10 site-category">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="wrench" class="w-5 h-5 text-amber-500"></i>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">效率与工具</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <a href="https://notion.so" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://www.notion.so/images/favicon.ico" class="w-9 h-9 rounded-lg" alt="Notion"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Notion</div>
+                <div class="text-xs text-slate-400 font-mono truncate">notion.so</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">模块化个人笔记、项目协作与知识管理中枢。</p>
+          </a>
+
+          <a href="https://translate.google.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://ssl.gstatic.com/translate/favicon.ico" class="w-9 h-9 rounded-lg" alt="Google Translate"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">Google 翻译</div>
+                <div class="text-xs text-slate-400 font-mono truncate">translate.google.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">支持上百种语言的实时机器互译与网页翻译。</p>
+          </a>
+
+          <a href="https://tinypng.com" target="_blank" rel="noopener noreferrer" class="site-card group p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-800 card-hover shadow-sm block">
+            <div class="flex items-center gap-3">
+              <img src="https://tinypng.com/images/apple-touch-icon.png" class="w-9 h-9 rounded-lg" alt="TinyPNG"/>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">TinyPNG</div>
+                <div class="text-xs text-slate-400 font-mono truncate">tinypng.com</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">智能高效的 PNG / WebP / JPEG 在线图像无损压缩利器。</p>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 底部版权与显眼友情链接 -->
+  <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
+      <div>
+        <div class="flex items-center justify-center sm:justify-start gap-2 font-bold text-slate-900 dark:text-white">
+          <i data-lucide="compass" class="w-4 h-4 text-blue-600"></i>
+          <span>NavsHub - 全球精选综合导航</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">适合一键部署至 GitHub Pages 的单页导航系统，快速、纯净、无任何广告残留。</p>
+      </div>
+
+      <!-- 底部显眼锚文本 -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+        <span class="text-slate-400">友情推荐:</span>
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="text-rose-600 dark:text-rose-400 hover:underline font-bold text-sm">
+          成人百科 (chengrenbaike.com)
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">GitHub</a>
+        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">Google</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 核心逻辑脚本 -->
+  <script>
+    // 初始化 Lucide 图标
+    lucide.createIcons();
+
+    // 1. 深色模式切换逻辑
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('nav_theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme === 'dark' || (!savedTheme && systemDark));
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('nav_theme', isDark ? 'dark' : 'light');
+      applyTheme(isDark);
+    });
+
+    // 2. 搜索引擎切换与站内检索
+    let currentEngine = 'google';
+    const engines = {
+      google: 'https://www.google.com/search?q=',
+      bing: 'https://www.bing.com/search?q=',
+      baidu: 'https://www.baidu.com/s?wd=',
+      github: 'https://github.com/search?q='
+    };
+
+    const tabs = document.querySelectorAll('.engine-tab');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active', 'bg-blue-50', 'dark:bg-blue-900/40', 'text-blue-600', 'dark:text-blue-400');
+          t.classList.add('text-slate-600', 'dark:text-slate-400');
+        });
+        tab.classList.add('active', 'bg-blue-50', 'dark:bg-blue-900/40', 'text-blue-600', 'dark:text-blue-400');
+        tab.classList.remove('text-slate-600', 'dark:text-slate-400');
+        currentEngine = tab.dataset.engine;
+
+        if (currentEngine === 'filter') {
+          searchInput.placeholder = '输入站点名称、网址或描述实时筛选本站卡片...';
+          searchInput.focus();
+        } else {
+          searchInput.placeholder = `使用 ${tab.textContent.trim()} 搜索全网内容...`;
+        }
+      });
+    });
+
+    // 实时站内筛选功能
+    searchInput.addEventListener('input', (e) => {
+      const keyword = e.target.value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.site-card');
+      const categories = document.querySelectorAll('.site-category');
+
+      if (!keyword) {
+        cards.forEach(c => c.classList.remove('hidden'));
+        categories.forEach(cat => cat.classList.remove('hidden'));
+        return;
+      }
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(keyword)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // 检查分类下是否还有可见卡片
+      categories.forEach(cat => {
+        const visibleCards = cat.querySelectorAll('.site-card:not(.hidden)');
+        if (visibleCards.length === 0) {
+          cat.classList.add('hidden');
+        } else {
+          cat.classList.remove('hidden');
+        }
+      });
+    });
+
+    // 搜索表单提交
+    searchForm.addEventListener('submit', (e) => {
+      const query = searchInput.value.trim();
+      if (!query) {
+        e.preventDefault();
+        return;
+      }
+
+      if (currentEngine === 'filter') {
+        e.preventDefault();
+        // 站内筛选模式不触发外部跳转
+        return;
+      }
+
+      e.preventDefault();
+      const targetUrl = engines[currentEngine] + encodeURIComponent(query);
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
